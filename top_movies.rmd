@@ -54,7 +54,8 @@ na.omit(top_movies)
 summary fonksiyonu ile uç degerlerimize(outliers) baktik, bir anormallik olmadiğini min ve max degerlerimizi kontrol ederek saptadik, bos deger donduren verilerimizi gorduk.
 NA iceren verileri temizledik
 
-#VERİYİ ANALİZ EDELİM summary tablomuzda critic_score min değerinin 2 max değerinin ise 100 olduğunu görmüştük.
+#VERİYİ ANALİZ EDELİM 
+summary tablomuzda critic_score min değerinin 2 max değerinin ise 100 olduğunu görmüştük.
 people_score ise min 10 max ise 98 oldugunu gorduk.
 ##Eleştirmenler ve insanlar tarafından en yüksek puanı alan 5 filmi inceleyelim.
 
