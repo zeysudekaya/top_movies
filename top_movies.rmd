@@ -1,0 +1,82 @@
+---
+title: "TOP MOVIES"
+author: "Sude"
+date: '2023-02-01'
+output:
+  html_document:
+    df_print: paged
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+#VERİMİZİ CAGIRALIM
+
+```{r}
+install.packages("readxl")
+library("readxl")
+
+top_movies <- read.csv("top_movies.csv", header = TRUE, sep=";", stringsAsFactors = FALSE)
+View(top_movies)
+```
+
+#VERİ SETİ YAPISINA BAKALIM
+
+```{r}
+class(top_movies)
+
+dim(top_movies)
+
+names(top_movies)
+
+install.packages("dplyr")
+library(dplyr)
+
+glimpse(top_movies)
+```
+
+Veri setimizin 1610 satır ve 26 sutundan olustugunu gördük.
+Toplam 27 degiskenimizin oldugunu ve bunların neler oldugunu ise names fonksiyonuyla elde ettik.
+glimpse fonksiyonu ile veri setimizin yapısına daha detayli baktik.
+
+#VERİYİ DÜZENLEYELİM
+
+```{r}
+
+install.packages("stringr")
+library(stringr)
+
+summary(top_movies)
+na.omit(top_movies)
+
+```
+
+summary fonksiyonu ile uç degerlerimize(outliers) baktik, bir anormallik olmadiğini min ve max degerlerimizi kontrol ederek saptadik, bos deger donduren verilerimizi gorduk.
+NA iceren verileri temizledik
+
+#VERİYİ ANALİZ EDELİM summary tablomuzda critic_score min değerinin 2 max değerinin ise 100 olduğunu görmüştük.
+people_score ise min 10 max ise 98 oldugunu gorduk.
+##Eleştirmenler ve insanlar tarafından en yüksek puanı alan 5 filmi inceleyelim.
+
+```{r}
+install.packages("dplyr")
+library(dplyr)
+
+best_movies <- top_movies %>% 
+  filter (critic_score == 100 & (people_score==98 | people_score ==97  ))
+best_movies
+
+```
+
+Buradan eleştirmenler ve insanlar tarafından en yüksek oyu alan filmlerin Seven Samurai, 12 Angry Men, Stop Making Sense ve Rewind olduğunu söyleyebiliriz
+
+##Eleştirmenler ve insanlar tarafından en kötü puanları alan filmleri inceleyelim.
+
+```{r}
+worst_movies <- top_movies %>% 
+  filter (critic_score < 20 & (people_score<40 ))
+worst_movies
+
+```
+
+Buradan eleştirmenler ve insanlar tarafından en kötü puanları alan filmlerin The Honeymooners, From Justin to Kelly, Wild Wild West, Jonah Hex ve Texas Rangers olduğunu söyleyebiliriz.
