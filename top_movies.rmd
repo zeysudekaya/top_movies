@@ -62,7 +62,6 @@ people_score ise min 10 max ise 98 oldugunu gorduk.
 ```{r}
 install.packages("dplyr")
 library(dplyr)
-
 best_movies <- top_movies %>% 
   filter (critic_score == 100 & (people_score==98 | people_score ==97  ))
 best_movies
